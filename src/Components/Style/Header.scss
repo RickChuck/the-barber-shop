@@ -1,0 +1,18 @@
+.title {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: flex-start;
+    
+}
+
+.logo {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.cart {
+    width: 75px;
+    margin-left: 20px;
+}

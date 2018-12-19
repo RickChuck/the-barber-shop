@@ -2,34 +2,36 @@ const bcrypt = require('bcryptjs');
 
 
 module.exports =  {
-    login: async (req, res) => {
+    signup: async (req, res) => {
         console.log('fired')
-        let { email, password } = req.body;
+        let { username, hash_value } = req.body;
         let db = req.app.get('db')
-        let userFound = await db.user_check([email]);
+        let userFound = await db.user_check([username]);
+        console.log(userFound)
         if (userFound[0]) {
-            return res.status(200).send('Email already exists')
+            return res.status(200).send('Username already exists')
         }
         let salt = bcrypt.genSaltSync(10)
-        let hash = bcrypt.hashSync(password, salt);
-        let createdUser = await db.create_user([email, hash])
-        req.session.user = { id: createdUser[0].id, email: createdUser[0].email }
+        let hash = bcrypt.hashSync(hash_value, salt);
+        let createdUser = await db.create_user([username, hash])
+        req.session.user = { id: createdUser[0].id, username: createdUser[0].username }
         res.status(200).send(req.session.user)
     },
     
-    register: async (req, res) => {
-        let { email, password } = req.body;
+    login: async (req, res) => {
+        let { username, hash_value } = req.body;
         let db = req.app.get('db')
-        let userFound = await db.user_check([email])
+        let userFound = await db.user_check([username])
+        console.log(userFound)
         if(!userFound[0]) {
-            return res.status(200).send('no email found')
+            return res.status(200).send('no username found')
         }
-        let result = bcrypt.compareSync(password, userFound[0].hash_value)
+        let result = bcrypt.compareSync(hash_value, userFound[0].hash_value)
         if (result) {
-            req.session.user = {id: userFound[0].id, email: userFound[0].email}
+            req.session.user = {id: userFound[0].id, username: userFound[0].username}
             res.status(200).send(req.session.user)
         } else {
-            return res.status(401).send('Incorrect email or password')
+            return res.status(401).send('Incorrect username or password')
         }
     },
 
