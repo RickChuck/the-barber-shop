@@ -1,6 +1,6 @@
 CREATE TABLE cart(
     cart_id SERIAL PRIMARY KEY,
-    user_id FOREIGN KEY TO users,
-    product_id FOREIGN KEY TO products,
+    user_id INT REFERENCES users(id),
+    product_id INT REFERENCES products(product_id),
     quantity INT
 )

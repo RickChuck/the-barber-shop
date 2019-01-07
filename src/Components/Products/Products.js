@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from '../Header/Header';
 import '../Style/Product.scss'
 // import { updateProducts } from '../../dux/reducer';
+// import { updateCart } from '../../dux/reducer';
 // import { connect } from 'react-redux';
 
 class Products extends Component{
@@ -13,6 +14,7 @@ class Products extends Component{
             products: []
         }
     }
+
     componentDidMount(){
         axios.get('/api/getProducts').then(res => {
             this.setState({
@@ -21,12 +23,21 @@ class Products extends Component{
         })
     }
 
-    handleCart(id){
-        axios.post(`/api/postProducts/${id}`, {
-            cart: this.props.cart
-        })
-    }
 
+    async handleCart(id){
+       let res = await axios.post(`/api/postProducts/${id}`)
+       this.props.updateCart(res.data)
+       console.log(res.data)
+    }
+    
+
+    // handleState = () => {
+    //     axios.post('/api/postProducts', {
+    //         products: this.props.products,
+    //         cart: this.props.cart
+    //     })
+    // }
+   
     render(){
         let productsDisplay = this.state.products.map((el, i) => {
             return (
@@ -61,5 +72,6 @@ class Products extends Component{
         )
     }
 }
+
 
 export default Products;
