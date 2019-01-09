@@ -24,6 +24,7 @@ const PROD_PRICE = 'PROD_PRICE';
 const DESCRIP = 'DESCRIP';
 const IMAGE = 'IMAGE';
 const PROD_ID = 'PROD_ID';
+// const QUANTITY = 'QUANTITY';
 // const TYPE = 'TYPE';
 // const PROV = 'PROV';
 // const DATE = 'DATE';
@@ -55,6 +56,9 @@ export default function reducer(state=initialState, action){
 
         case PROD_ID:
             return Object.assign({}, state, {product_id: action.payload});
+        
+        // case QUANTITY:
+        //     return Object.assign({}, state, {quantity: action.payload});
     }
 }
 
@@ -106,3 +110,10 @@ export function updateProdId(id){
         payload: id
     }
 }
+
+// export function increaseQuantity(quantity){
+//     return{
+//         type: QUANTITY,
+//         payload: quantity
+//     }
+// }

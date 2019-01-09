@@ -13,6 +13,7 @@ class Products extends Component{
         this.state = {
             products: []
         }
+        this.handleCart = this.handleCart.bind(this);
     }
 
     componentDidMount(){
@@ -24,9 +25,9 @@ class Products extends Component{
     }
 
 
-    async handleCart(id){
-       let res = await axios.post(`/api/postProducts/${id}`)
-       this.props.updateCart(res.data)
+    async handleCart(product_id){
+        console.log(product_id)
+       let res = await axios.post(`/api/postProducts/${product_id}`, { quantity: 1})
        console.log(res.data)
     }
     
@@ -40,8 +41,9 @@ class Products extends Component{
    
     render(){
         let productsDisplay = this.state.products.map((el, i) => {
+            // console.log(el)
             return (
-                <div key={i}>
+                <div key={i} className='product-box'>
                     <div>
                         <img className='image' src={el.img} alt=''/>
                         <hr/>
@@ -53,7 +55,9 @@ class Products extends Component{
                     <div className='product-details'>
                         <p className='product-description'>{el.product_description}</p>
                     </div>
-                    <button onClick={() => this.handleCart(el.id)} className='cart-button'>Add to Cart</button>
+                    <button onClick={() => this.handleCart(el.product_id)} className='cart-button'>
+                    ADD TO CART
+                    </button>
                 </div> 
             )
         })
@@ -64,7 +68,7 @@ class Products extends Component{
                 </div>
                 <div className='all-products'>
                     <h1>Products</h1>
-                    <div className='product-box'>
+                    <div className='product-body'>
                         {productsDisplay}
                     </div>
                 </div>

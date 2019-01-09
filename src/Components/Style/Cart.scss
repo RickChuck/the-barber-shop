@@ -6,7 +6,10 @@
 .image {
     width: 15vw;
     height: auto;
+    max-height: 40vh;
+    max-width: 30vw;
     margin: 10px;
+    image-resolution: 100dpi;
 }
 
 .product-box {

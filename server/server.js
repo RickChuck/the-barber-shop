@@ -28,28 +28,30 @@ massive(CONNECTION_STRING).then(db => {
 });
 
 //auth endpoints
-app.post('/auth/signup', auth.signup)
-app.post('/auth/login', auth.login)
-app.post('/auth/logout', auth.logout)
+app.post('/auth/signup', auth.signup);
+app.post('/auth/login', auth.login);
+app.post('/auth/logout', auth.logout);
 
 //component endpoints
 
 //Products.js
-app.get('/api/getProducts', ctrl.getProducts)
-app.post('/api/postProducts/:id', ctrl.postToCart)
+app.get('/api/getProducts', ctrl.getProducts);
+app.post('/api/postProducts/:id', ctrl.postToCart);
 
 //Cart.js
-app.get('/api/v', ctrl.getCart)
+app.get('/api/getCart/', ctrl.getCart);
+app.delete('/api/deleteItem/:cart_id', ctrl.delete);
+app.put('/api/updateQuantity', ctrl.updateQuantity);
 
 // Stripe -- Checkout.js
 app.post("/charge", async (req, res) => {
     try {
-      let {status} = await stripe.charges.create({
-        amount: 2000,
-        currency: "usd",
-        description: "An example charge",
-        source: req.body
-      });
+        let {status} = await stripe.charges.create({
+            amount: 2000,
+            currency: "usd",
+            description: "An example charge",
+            source: req.body
+        });
   console.log(req.body)
       res.json({status});
     } catch (err) {

@@ -3,6 +3,9 @@
     flex-direction: column;
     flex-wrap: wrap;
 }
+
+.product-body
+
 .image {
     width: 15vw;
     height: auto;
@@ -11,7 +14,7 @@
 
 .product-box {
     width: 30vw;
-    height: auto;
+    height: 30vh;
     border: solid black 5px;
     margin: 25px;
 }
