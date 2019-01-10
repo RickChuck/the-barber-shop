@@ -11,7 +11,7 @@ const path = require('path');
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json());
-
+app.use( express.static( `${__dirname}/../build` ) );
 
 let { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, STRIPE_KEY } = process.env
 
