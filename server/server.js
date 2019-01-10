@@ -6,6 +6,7 @@ const ctrl = require('./ctrl');
 const auth = require('./auth_ctrl');
 const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -61,4 +62,9 @@ app.post("/charge", async (req, res) => {
 
 app.listen(SERVER_PORT, () => {
     console.log(`I hear it on: ${SERVER_PORT}`)
+});
+
+//This tells express to look for a build folder.
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
 });
