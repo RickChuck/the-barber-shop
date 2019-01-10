@@ -49,7 +49,7 @@ class Cart extends React.Component{
         })
     }
 
-    increment = () => {
+    increase = () => {
         this.setState({quantity: this.state.quantity + 1})
     }
 
@@ -58,7 +58,7 @@ class Cart extends React.Component{
     }
 
     render(){
-        console.log(this.state)
+        console.log(this.state.quantity)
         let cartDisplay = this.state.cart.map((el, i) => {
             return (
                 <div key={i} className='product-box'>
@@ -67,9 +67,9 @@ class Cart extends React.Component{
                     </div>
                     <div className='quantity'>
                         <p>
-                            <button onClick={() => this.decrease(el.quantity)}>-</button>
-                            Quantity:{this.state.quantity}
-                            <button onClick={() => this.increment(el.quantity)}>+</button>
+                            <button onClick={() => this.decrease(el.cart_id)}>-</button>
+                            Quantity:{el.quantity}
+                            <button onClick={() => this.increase(el.cart_id)}>+</button>
                         </p>
                         
                     </div>
