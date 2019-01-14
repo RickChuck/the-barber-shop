@@ -7,15 +7,20 @@ const auth = require('./auth_ctrl');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
+const stripe = require('react-stripe-checkout')
 
+// const SERVER_CONFIGS = require('./constants/srvr')
+
+// const configureServer = require('./stripeServer');
+// const configureRoutes = require('./stripeRoutes');
+// configureServer(app);
+// configureRoutes(app);
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json());
 app.use( express.static( `${__dirname}/../build` ) );
 
 let { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, STRIPE_KEY } = process.env
-
-const stripe = require('stripe')(STRIPE_KEY)
 
 app.use(session({
     secret: SESSION_SECRET,
@@ -33,16 +38,21 @@ app.post('/auth/signup', auth.signup);
 app.post('/auth/login', auth.login);
 app.post('/auth/logout', auth.logout);
 
-//component endpoints
+//Component endpoints
+
+//Booking.js
+app.post('/api/bookings',ctrl.createBooking);
+app.get('/api/getBookings', ctrl.getBooking);
+app.delete('/api/bookings/:id', ctrl.deleteBooking);
 
 //Products.js
 app.get('/api/getProducts', ctrl.getProducts);
 app.post('/api/postProducts/:id', ctrl.postToCart);
 
 //Cart.js
-app.get('/api/getCart/', ctrl.getCart);
+app.get('/api/getCart', ctrl.getCart);
 app.delete('/api/deleteItem/:cart_id', ctrl.delete);
-app.put('/api/updateQuantity', ctrl.updateQuantity);
+app.put('/api/updateQuantity/:cart_id', ctrl.updateQuantity);
 
 // Stripe -- Checkout.js
 app.post("/charge", async (req, res) => {
@@ -56,13 +66,14 @@ app.post("/charge", async (req, res) => {
   console.log(req.body)
       res.json({status});
     } catch (err) {
-      res.status(500).end();
+        console.log(err, "Payment error please try again")
+        res.status(500).end();
     }
   });
-
-app.listen(SERVER_PORT, () => {
-    console.log(`I hear it on: ${SERVER_PORT}`)
-});
+const port = process.env.SERVER_PORT || port;
+app.listen(port, () => {
+    console.log(`I hear it on: ${port}`)
+})
 
 //This tells express to look for a build folder.
 app.get('*', (req, res)=>{

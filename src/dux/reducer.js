@@ -8,66 +8,56 @@ let initialState = {
     img:'',
     product_id: 0,
     quantity: 0,
+    client_name: '',
     service_type: '',
     service_provider: '',
     app_date: '',
     app_time: '',
-    price: '',
-    avg_time: '',
 }
 
 
-const PRODUCT = 'PRODUCT';
 const CART = 'CART';
-const PROD_NAME ='PROD_NAME';
-const PROD_PRICE = 'PROD_PRICE';
-const DESCRIP = 'DESCRIP';
-const IMAGE = 'IMAGE';
-const PROD_ID = 'PROD_ID';
-// const QUANTITY = 'QUANTITY';
-// const TYPE = 'TYPE';
-// const PROV = 'PROV';
-// const DATE = 'DATE';
-// const TIME = 'TIME';
-// const PRICE = 'PRICE';
-// const AVGTIME = 'AVGTIME';
+const QUANTITY = 'QUANTITY';
+const CLIENT_NAME = 'CLIENT_NAME'
+const TYPE = 'TYPE';
+const PROV = 'PROV';
+const DATE = 'DATE';
+const TIME = 'TIME';
+const RESET_INFO = 'RESET_INFO'
 
 
 export default function reducer(state=initialState, action){
     console.log(action)
     switch(action.type){
-        case PRODUCT:
-            return Object.assign({}, state, {products: action.payload});
-    
         case CART:
             return Object.assign({}, state, {cart: action.payload});
-
-        case PROD_NAME:
-            return Object.assign({}, state, {product_name: action.payload});
-
-        case PROD_PRICE:
-            return Object.assign({}, state, {product_price: action.payload});
         
-        case DESCRIP:
-            return Object.assign({}, state, {product_description: action.payload});
+        case QUANTITY:
+            return Object.assign({}, state, {quantity: action.payload});
 
-        case IMAGE:
-            return Object.assign({}, state, {img: action.payload});
-
-        case PROD_ID:
-            return Object.assign({}, state, {product_id: action.payload});
+        case TYPE:
+            return Object.assign({}, state, {service_type: action.payload});
         
-        // case QUANTITY:
-        //     return Object.assign({}, state, {quantity: action.payload});
-    }
-}
+        case CLIENT_NAME:
+            return Object.assign({}, state, {client_name: action.payload});
 
-export function updateProducts(products){
-    return{
-        type: PRODUCT,
-        payload: products
+        case PROV:
+            return Object.assign({}, state, {service_provider: action.payload});
+
+        case DATE:
+            return Object.assign({}, state, {app_date: action.payload});
+
+        case TIME:
+            return Object.assign({}, state, {app_time: action.payload});
+
+        case RESET_INFO:
+            return initialState
+        
+        default:
+            return state;
     }
-}
+};
+
 
 export function updateCart(cart){
     return{
@@ -76,44 +66,51 @@ export function updateCart(cart){
     }
 }
 
-export function updateName(name){
+export function increaseQuantity(quantity){
     return{
-        type: PROD_NAME,
-        payload: name
+        type: QUANTITY,
+        payload: quantity
     }
 }
 
-export function updateProdPrice(prodPrice){
+export function updateType(type){
     return{
-        type: PROD_PRICE,
-        payload: prodPrice
+        type: TYPE,
+        payload: type
     }
 }
 
-export function updateDescrip(description){
+export function updateUserName(clientName){
     return{
-        type: DESCRIP,
-        payload: description
+        type: CLIENT_NAME,
+        payload: clientName
     }
 }
 
-export function updateImage(image){
+export function updateProvider(prov){
     return{
-        type: IMAGE,
-        payload: image
+        type: PROV,
+        payload: prov
     }
 }
 
-export function updateProdId(id){
+export function updateDate(date){
     return{
-        type: PROD_ID,
-        payload: id
+        type: DATE,
+        payload: date
     }
 }
 
-// export function increaseQuantity(quantity){
-//     return{
-//         type: QUANTITY,
-//         payload: quantity
-//     }
-// }
+export function updateTime(time){
+    return{
+        type: TIME,
+        payload: time
+    }
+}
+
+
+export function resetValues(){
+    return {
+        type: RESET_INFO
+    }
+}

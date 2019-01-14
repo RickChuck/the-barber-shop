@@ -1,10 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Staatliches');
+
+.header{
+    box-sizing: border-box;
+    min-height: calc(100vh - 40vh);
+}
 .title {
     display: flex;
     flex-direction: row;
     align-self: flex-start;
     align-items: center;
     justify-content: flex-start;
-    
+    margin: 10px;
+}
+
+.nav_bar {
+    display: flex;
+}
+
+.the_barber_shop {
+    font-family: 'Staatliches', cursive;
+    font-size: 45px;
 }
 
 .logo {
@@ -13,6 +28,6 @@
 }
 
 .cart {
-    width: 75px;
+    width: 45px;
     margin-left: 20px;
 }

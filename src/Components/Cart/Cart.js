@@ -11,13 +11,16 @@ import deleteIcon from './delete_button.png';
 
 
 class Cart extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             cart: [],
-            quantity: 1
+            quantity: []
         }
         this.delete = this.delete.bind(this);
+        this.handleQuantity = this.handleQuantity.bind(this);
+        this.increase = this.increase.bind(this);
+        this.decrease = this.decrease.bind(this);
     }
 
     async componentDidMount(){
@@ -38,23 +41,26 @@ class Cart extends React.Component{
         })
     }
 
-    updateQuantity(id){
-        let quantity = this.state.quantity
-        let {cart_id} = this.props.id
-        axios.put('/api/updateQuantity', {quantity, cart_id, id})
-        .then(res => {
+    async handleQuantity(cart_id, quantity) {
+        await axios.put(`/api/updateQuantity/${cart_id}`, {quantity})
+        .then((res) => {
             this.setState({
                 quantity: res.data
             })
+            // this.reload()
         })
     }
+    // reload() {
+    //     window.location.reload()
+    // }
 
-    increase = () => {
-        this.setState({quantity: this.state.quantity + 1})
+
+    increase = (cart_id, quantity) => {
+        this.handleQuantity(cart_id, quantity + 1)
     }
 
-    decrease = () => {
-        this.setState({quantity: this.state.quantity - 1})
+    decrease = (cart_id, quantity) => {
+        this.handleQuantity(cart_id, quantity - 1)
     }
 
     render(){
@@ -62,17 +68,15 @@ class Cart extends React.Component{
         let cartDisplay = this.state.cart.map((el, i) => {
             return (
                 <div key={i} className='product-box'>
-                    <div onClick={() => this.delete(el.cart_id)}>
-                        <img src={deleteIcon} className='deleteIcon' alt=""/>
+                    <div>
+                        <img onClick={() => this.delete(el.cart_id)} src={deleteIcon} className='deleteIcon' alt=""/>
                     </div>
                     <div className='quantity'>
-                        <p>
-                            <button onClick={() => this.decrease(el.cart_id)}>-</button>
-                            Quantity:{el.quantity}
-                            <button onClick={() => this.increase(el.cart_id)}>+</button>
-                        </p>
-                        
+                        <button onClick={() => this.decrease(el.cart_id, el.quantity)}> — </button>
+                            quantity: {el.quantity}
+                        <button onClick={() => this.increase(el.cart_id, el.quantity)}> ＋ </button>
                     </div>
+                    <hr/>
                     <div >
                         <img className='image' src={el.img} alt=''/>
                         <hr/>

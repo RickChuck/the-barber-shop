@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Staatliches');
+.App {
+    text-align: center;
+}
+
+.auth-app {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    scroll-behavior: smooth;
+}
+
+.authL {
+    width: 150px;
+    // margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+.auth-title {
+    // border: black solid 1px;
+    display: flex;
+    align-self: flex-start;
+    margin: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    
+    .auth-the_barber_shop {
+        font-size: 60px;
+        font-family: 'Staatliches', cursive;
+        margin: 25px;
+        justify-content: flex-start;
+
+    }
+}
+
+.auth-body {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin-left: 20px;
+    width: 500px;
+}
+
+.auth-body {
+    overflow:hidden;
+    transition:max-height 0.3s ease-out;
+    height:auto;
+    max-height:600px;
+}
+.auth-body {
+    max-height:0;
+}
+
+.auth-login {
+    // border: black solid 1px;
+    align-self: center;
+}

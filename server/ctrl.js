@@ -10,8 +10,8 @@ module.exports = {
         const db =req.app.get('db');
         const user_id = req.session.user.id
         let cart = await db.get_cart([user_id]);
-        res.status(200).send(cart)
-        // console.log(cart);
+        await res.status(200).send(cart)
+        console.log(req.session.user);
     },
 
     postToCart: (req, res) => {
@@ -37,13 +37,39 @@ module.exports = {
         .then(remove => res.status(200).send(remove))
     },
 
-    updateQuantity: (req, res) => {
+    updateQuantity: async (req, res) => {
         const db = req.app.get('db');
         const {quantity} = req.body
         const {cart_id} = req.params
-        db.update_quantity([quantity, cart_id])
-        .then((updatedQuantity) => {
-            res.status(200).send(updatedQuantity)
-        })
+        const updatedQuantity = await db.update_quantity([quantity, cart_id])
+        res.status(200).send(updatedQuantity)
+        console.log(req.body, req.params)
+    },
+
+    createBooking: (req, res) => {
+        console.log(req.body)
+        const db = req.app.get('db')
+        const {client_name, service_type, service_provider, app_date, app_time} = req.body
+        console.log(req.session);
+        db.create_booking([client_name, service_type, service_provider, app_date, app_time, req.session.user.id])
+        .then(bookings => res.send(bookings))
+    },
+
+    getBooking: async (req, res) => {     
+        try {        
+            const db = req.app.get('db');
+            console.log(req.session.user);
+            const user_id = await req.session.user.id
+            let bookings = await db.get_booking([user_id]);
+            await res.status(200).send(bookings)
+            // console.log(req.session.user);
+        } catch (err) { console.log(err);} 
+    },
+
+    deleteBooking: async (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params
+        const deleteBooking = await db.delete_booking([id, req.session.user.id])
+        await res.status(200).send(deleteBooking)
     }
 };
