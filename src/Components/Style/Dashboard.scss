@@ -1,3 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Staatliches');
+
 .bookingCard{
-    border: solid 5px black;
-  }
+    border: solid 2px black;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dash-app {
+  margin: 5px;
+}
+
+.dash-delete {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 15vw;
+  height: 4vh;
+}
+
+.dash-title {
+  font-family: 'Staatliches', cursive;
+  font-size: 40px
+}

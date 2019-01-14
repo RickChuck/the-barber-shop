@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Collapse, Button, CardBody, Card } from 'reactstrap';
+// import { Collapse, Button, CardBody, Card } from 'reactstrap';
 import axios from 'axios';
 import '../Style/Auth.scss';
 import logo from '../Header/barber-shop.svg';
+import backgroundImg from '../Style/images/barbshop.jpg';
+
 
 class App extends Component {
   constructor(props) {
@@ -46,12 +48,13 @@ class App extends Component {
   render() {
     return (
       <div className="auth-app">
+        <img className='backgroundImg' src={backgroundImg} alt='barbs'/>
         <div className='auth-title'>
           <img src={logo} alt='' className='authL'/>
           <h2 className='auth-the_barber_shop'>the Barber Shop</h2>
         </div>
         <div className='auth-body'>
-          <Button color="primary" onClick={this.toggle} style={{ marginBottom: '3rem' }}>Haircuts</Button>
+          {/* <Button color="primary" onClick={this.toggle} style={{ marginBottom: '3rem' }}>Haircuts</Button>
           <Collapse isOpen={this.state.collapse}>
             <Card>
               <CardBody>
@@ -78,7 +81,7 @@ class App extends Component {
                 </div>
               </CardBody>
             </Card>
-          </Collapse>
+          </Collapse> */}
         </div>
         <div className='auth-login'>
           <p>Username: <input onChange={(e) => this.setState({username: e.target.value})} type='text' /></p>

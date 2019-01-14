@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import Header from '../Header/Header';
 import '../Style/Product.scss'
+import SweetAlert from 'sweetalert-react';
+import 'sweetalert/dist/sweetalert.css';
 // import { updateProducts } from '../../dux/reducer';
 // import { updateCart } from '../../dux/reducer';
 // import { connect } from 'react-redux';
@@ -11,7 +13,8 @@ class Products extends Component{
     constructor(props){
         super(props);
         this.state = {
-            products: []
+            products: [],
+            show: false
         }
         this.handleCart = this.handleCart.bind(this);
     }
@@ -55,9 +58,16 @@ class Products extends Component{
                     <div className='product-details'>
                         <p className='product-description'>{el.product_description}</p>
                     </div>
-                    <button onClick={() => this.handleCart(el.product_id)} className='cart-button'>
-                    ADD TO CART
-                    </button>
+                    <div className='add-to-cart-div'>
+                        <button onClick={() => {this.handleCart(el.product_id,); this.setState({show:true})}} className='cart-button'>ADD TO CART</button>
+                        <SweetAlert 
+                            show={this.state.show}
+                            title='Added to Cart'
+                            text='Click on shopping cart to view your item(s)'
+                            setTimeout={1000}
+                            onConfirm={() => this.setState({show: false})}
+                        />
+                    </div>
                 </div> 
             )
         })
@@ -67,7 +77,7 @@ class Products extends Component{
                     <Header/>
                 </div>
                 <div className='all-products'>
-                    <h1>Products</h1>
+                    <h1 className='product-title'>Products</h1>
                     <div className='product-body'>
                         {productsDisplay}
                     </div>

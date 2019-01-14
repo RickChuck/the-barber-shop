@@ -1,10 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Staatliches');
+
 .all-products {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    margin-top: 0px;
+    align-self: flex-end;
+    justify-content: center;
+    width: auto;
+    height: auto;
 }
 
-.product-body
+.product-title{
+    font-family: 'Staatliches', cursive;
+    font-size: 50px;
+}
+
+.product-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+    height: auto;
+}
 
 .image {
     width: 15vw;
@@ -12,12 +28,6 @@
     margin: 10px;
 }
 
-.product-box {
-    width: 30vw;
-    height: 30vh;
-    border: solid black 5px;
-    margin: 25px;
-}
 
 .product-name {
     align-self: flex-start;
@@ -29,6 +39,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.product-name {
+    text-align: left;
 }
 
 .product-price {
@@ -47,5 +62,5 @@
 .cart-button {
     display: flex;
     margin: 10px;
-
+    justify-content: flex-end;
 }

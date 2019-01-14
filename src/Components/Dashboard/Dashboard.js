@@ -36,7 +36,8 @@ class Dashboard extends Component {
             let date = new Date(el.app_date)
                 return(
                     <div key={i} className='bookingCard'>
-                        <button onClick={() => {this.delete(el.app_id)}}>Delete Appointment</button>
+                        <h3>Your Appointment</h3>
+                        <button className='dash-delete' onClick={() => {this.delete(el.app_id)}}>Delete Appointment</button>
                         <p className='cardTitle'>Hello {el.client_name}, your next appointment is with {el.service_provider}.</p>
                         <p>Date: {new Intl.DateTimeFormat('en-US').format(date)} || Time: {el.app_time}</p>
                         <p>The service that was requested was, {el.service_type}.
@@ -46,17 +47,16 @@ class Dashboard extends Component {
         })
         return(
             <div>
-                <div className='header'>
+                <div className='dash-header'>
                     <Header/>
                 </div>
                 <div className='body'>
-                    <h1>Welcome</h1>
+                    <h1 className='dash-title'>Welcome</h1>
                     <p>Let our team of expert stylists help you look you best!</p>
                     <div className='bookApp'>
                         <Link to={'/booking'}><button>Book Now!</button></Link>
                     </div>
-                    <div>
-                        <h1>Your Appointments</h1>
+                    <div className='dash-app'>
                         {bookingsDisplay}
                     </div>
                 </div>

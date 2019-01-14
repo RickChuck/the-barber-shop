@@ -41,7 +41,8 @@ module.exports = {
         const db = req.app.get('db');
         const {quantity} = req.body
         const {cart_id} = req.params
-        const updatedQuantity = await db.update_quantity([quantity, cart_id])
+        const {id} = req.session.user
+        const updatedQuantity = await db.update_quantity([quantity, cart_id, id])
         res.status(200).send(updatedQuantity)
         console.log(req.body, req.params)
     },

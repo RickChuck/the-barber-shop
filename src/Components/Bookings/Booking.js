@@ -9,7 +9,6 @@ import {
     resetValues
 } from '../../dux/reducer';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import {withRouter} from 'react-router';
 
 class Dashboard extends Component {
@@ -83,8 +82,9 @@ class Dashboard extends Component {
                 </div>
                 <div className='booking_service_provider'>
                     <h4>Select Barber: <select onChange={this.handlePropProvider} value={this.props.service_provider}>
-                        <option value='Kaylea'>Kaylea</option>
                         <option value='John Doe'>John Doe</option>
+                        <option value='Jane Doe'>John Doe</option>
+                        <option value='Kaylea'>Kaylea</option>
                     </select>
                     </h4>
                 </div>
@@ -96,28 +96,28 @@ class Dashboard extends Component {
                     <p>Time: <select onChange={this.handlePropTime} value={this.props.app_time}>
                         <option value='09:00:00'>9am</option>
                         <option value='09:30:00'>9:30am</option>
-                        <option value='10:30:00'>10am</option>
-                        <option value='10:30'>10:30am</option>
-                        <option value='11'>11am</option>
-                        <option value='11:30'>11:30am</option>
-                        <option value='12'>12pm</option>
-                        <option value='12:30'>12:30pm</option>
-                        <option value='1'>1pm</option>
-                        <option value='1:30'>1:30pm</option>
-                        <option value='2'>2pm</option>
-                        <option value='2:30'>2:30pm</option>
-                        <option value='3'>3pm</option>
-                        <option value='3:30'>3:30pm</option>
-                        <option value='4'>4pm</option>
-                        <option value='4:30'>4:30pm</option>
-                        <option value='5'>5pm</option>
-                        <option value='5:30'>5:30pm</option>
-                        <option value='6'>6pm</option>
-                        <option value='6:30'>6:30pm</option>
+                        <option value='10:00:00'>10am</option>
+                        <option value='10:30:00'>10:30am</option>
+                        <option value='11:00:00'>11am</option>
+                        <option value='11:30:00'>11:30am</option>
+                        <option value='12:00:00'>12pm</option>
+                        <option value='12:30:00'>12:30pm</option>
+                        <option value='01:00:00'>1pm</option>
+                        <option value='01:30:00'>1:30pm</option>
+                        <option value='02:00:00'>2pm</option>
+                        <option value='02:30:00'>2:30pm</option>
+                        <option value='03:00:00'>3pm</option>
+                        <option value='03:30:00'>3:30pm</option>
+                        <option value='04:00:00'>4pm</option>
+                        <option value='04:30:00'>4:30pm</option>
+                        <option value='05:00:00'>5pm</option>
+                        <option value='05:30:00'>5:30pm</option>
+                        <option value='06:00:00'>6pm</option>
+                        <option value='06:30:00'>6:30pm</option>
                     </select>
                     </p>
                 </div>
-                <button onClick={this.createBooking}>Submit</button>
+                <button className='hover' onClick={this.createBooking}>Submit</button>
             </div>
         )
     }

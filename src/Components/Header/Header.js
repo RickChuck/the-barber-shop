@@ -28,13 +28,11 @@ class Header extends Component {
                         <h2 className='the_barber_shop'>the Barber Shop</h2>
                     {/* </div> */}
                 </div>
-                <div className='nav_bar'>
-                    <hr/>
                 <button onClick={this.logout}  className='logout'>Logout</button>
-                        <Link to={'/products'}><button>Shop</button></Link>
+                <ul className='nav_bar'>
+                        <Link to={'/products'}><button className='shop-btn'>Shop</button></Link>
                         <Link to={'/cart'}><img src={cartIcon} alt='' className='cart'/></Link>
-                    <hr/>
-                </div>
+                </ul>
             </div>
         )
     }
