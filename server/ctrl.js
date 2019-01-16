@@ -59,7 +59,7 @@ module.exports = {
     getBooking: async (req, res) => {     
         try {        
             const db = req.app.get('db');
-            console.log(req.session.user);
+            console.log(req.session);
             const user_id = await req.session.user.id
             let bookings = await db.get_booking([user_id]);
             await res.status(200).send(bookings)

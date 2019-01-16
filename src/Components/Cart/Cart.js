@@ -20,10 +20,7 @@ class Cart extends React.Component{
             quantity: [],
             show: false
         }
-        this.delete = this.delete.bind(this);
         this.handleQuantity = this.handleQuantity.bind(this);
-        this.increase = this.increase.bind(this);
-        this.decrease = this.decrease.bind(this);
     }
 
     async componentDidMount(){

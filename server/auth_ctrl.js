@@ -29,6 +29,7 @@ module.exports =  {
         let result = bcrypt.compareSync(hash_value, userFound[0].hash_value)
         if (result) {
             req.session.user = {id: userFound[0].id, username: userFound[0].username}
+            console.log(req.session.user)
             res.status(200).send(req.session.user)
         } else {
             return res.status(401).send('Incorrect username or password')
