@@ -22,7 +22,7 @@ module.exports = {
         // console.log('request', req.params, req.body)
         db.add_cart([id, user_id, quantity])
         .then(products => {
-            console.log(products)
+            // console.log(products)
             res.send(products)}).catch((err) => {
                 console.log(err)
                 res.sendStatus(500)

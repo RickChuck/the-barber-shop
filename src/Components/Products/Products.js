@@ -24,9 +24,8 @@ class Products extends Component{
 
 
     handleCart = async (product_id) => {
-        console.log(product_id)
-       let res = await axios.post(`/api/postProducts/${product_id}`, { quantity: 1})
-       console.log(res.data)
+        // console.log(product_id)
+       await axios.post(`/api/postProducts/${product_id}`, { quantity: 1})
     };
    
     render(){
