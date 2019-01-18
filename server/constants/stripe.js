@@ -1,7 +1,7 @@
 const configureStripe = require('stripe');
 require('dotenv').config();
 
-const {STRIPE_KEY} = process.env
+const {STRIPE_KEY} = process.env;
 
 const STRIPE_SECRET_KEY = process.env.NODE_ENV === 'production'
     ? STRIPE_KEY

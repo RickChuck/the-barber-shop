@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
-// import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Header from '../Header/Header';
-import '../Style/Product.scss'
+import '../Style/Product.scss';
 import SweetAlert from 'sweetalert-react';
 import 'sweetalert/dist/sweetalert.css';
-// import { updateProducts } from '../../dux/reducer';
-// import { updateCart } from '../../dux/reducer';
-// import { connect } from 'react-redux';
 
 class Products extends Component{
     constructor(props){
@@ -16,8 +12,7 @@ class Products extends Component{
             products: [],
             show: false
         }
-        this.handleCart = this.handleCart.bind(this);
-    }
+    };
 
     componentDidMount(){
         axios.get('/api/getProducts').then(res => {
@@ -25,22 +20,14 @@ class Products extends Component{
                 products: res.data
             })
         })
-    }
+    };
 
 
-    async handleCart(product_id){
+    handleCart = async (product_id) => {
         console.log(product_id)
        let res = await axios.post(`/api/postProducts/${product_id}`, { quantity: 1})
        console.log(res.data)
-    }
-    
-
-    // handleState = () => {
-    //     axios.post('/api/postProducts', {
-    //         products: this.props.products,
-    //         cart: this.props.cart
-    //     })
-    // }
+    };
    
     render(){
         let productsDisplay = this.state.products.map((el, i) => {
@@ -71,6 +58,7 @@ class Products extends Component{
                 </div> 
             )
         })
+
         return(
             <div>
                 <div className='header'>

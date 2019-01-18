@@ -7,7 +7,7 @@ const auth = require('./auth_ctrl');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
-const stripe = require('react-stripe-checkout')
+const stripe = require('react-stripe-checkout');
 
 // const SERVER_CONFIGS = require('./constants/srvr')
 
@@ -66,7 +66,7 @@ app.post("/charge", async (req, res) => {
   console.log(req.body)
       res.json({status});
     } catch (err) {
-        console.log(err, "Payment error please try again")
+        console.log(err, "Payment error please try again");
         res.status(500).end();
     }
   });

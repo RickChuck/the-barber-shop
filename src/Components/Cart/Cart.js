@@ -7,10 +7,6 @@ import CheckoutBtn from '../CheckoutBtn/CheckoutBtn';
 import deleteIcon from './delete_button.png';
 import SweetAlert from 'sweetalert-react';
 import 'sweetalert/dist/sweetalert.css';
-// import { updateProducts } from '../../dux/reducer';
-// import { updateCart } from '../../dux/reducer';
-// import { connect } from 'react-redux';
-
 
 class Cart extends React.Component{
     constructor(props){
@@ -34,7 +30,7 @@ class Cart extends React.Component{
         console.log(cart_id)
         axios.delete(`/api/deleteItem/${cart_id}`)
         .then(res => {
-            console.log(res)
+            // console.log(res)
             this.setState({
                 cart: res.data
             })
@@ -44,18 +40,13 @@ class Cart extends React.Component{
     async handleQuantity(cart_id, quantity) {
         await axios.put(`/api/updateQuantity/${cart_id}`, {quantity})
         .then((res) => {
-            console.log(res)
+            // console.log(res)
             this.setState({
                 cart: res.data
             })
-            // this.reload()
         })
     }
-    // reload() {
-    //     window.location.reload()
-    // }
-
-
+ 
     increase = (cart_id, quantity) => {
         this.handleQuantity(cart_id, quantity + 1)
     }
@@ -65,7 +56,7 @@ class Cart extends React.Component{
     }
 
     render(){
-        console.log(this.state.quantity)
+        // console.log(this.state.quantity)
         let cartDisplay = this.state.cart.map((el, i) => {
             return (
                 <div key={i} className='product-box'>

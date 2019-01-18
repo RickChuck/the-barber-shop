@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import Header from '../Header/Header';
 import axios from 'axios';
 import '../Style/Dashboard.scss';
-// import Booking from '../Bookings/Booking';
 
 class Dashboard extends Component {
     constructor(){

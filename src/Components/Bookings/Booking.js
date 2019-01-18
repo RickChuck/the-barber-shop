@@ -10,6 +10,8 @@ import {
 } from '../../dux/reducer';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
+// import { Collapse, Button, CardBody, Card } from 'reactstrap';
+
 
 class Dashboard extends Component {
     constructor(){
@@ -20,8 +22,8 @@ class Dashboard extends Component {
             service_provider: '',
             app_date: '',
             app_time: '',
-            
-        }
+            collapse: false
+        };
     }
     handlePropType = async (e) => {
         await this.props.updateType(e.target.value)
@@ -60,6 +62,9 @@ class Dashboard extends Component {
             this.props.history.push('./dashboard')
         })
     }
+    // toggle = () => {
+    //     this.setState({ collapse: !this.state.collapse });
+    // }
 
     render(){
         // console.log(this.state)
@@ -83,7 +88,7 @@ class Dashboard extends Component {
                 <div className='booking_service_provider'>
                     <h4>Select Barber: <select onChange={this.handlePropProvider} value={this.props.service_provider}>
                         <option value='John Doe'>John Doe</option>
-                        <option value='Jane Doe'>John Doe</option>
+                        <option value='Jane Doe'>Jane Doe</option>
                         <option value='Kaylea'>Kaylea</option>
                     </select>
                     </h4>
@@ -118,6 +123,35 @@ class Dashboard extends Component {
                     </p>
                 </div>
                 <button className='hover' onClick={this.createBooking}>Submit</button>
+                <hr/>
+                    {/* <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Toggle</Button>
+                    <Collapse isOpen={this.state.collapse}>
+                        <Card>
+                            <CardBody>
+                                <div>
+                                <h4>The G.O.A.T</h4>
+                                <p>Everything: Haircut, shampoo & conditioner, double steam towel, scalp massage, chair massage, neck shave, wax nose/ears/brows, straight razor shave or beard trim. Includes "Face Buff" treatment.</p>
+                                </div>
+                                <div>
+                                <h4>The Chariman</h4>
+                                <p>Haircut, shampoo & conditioner, double steam towel, scalp massage, chair massage, beard trim, neck shave, wax nose/ears/brows.</p>
+                                </div>
+                                <div>
+                                <h4>The Executive</h4>
+                                <p>Haircut, shampoo & conditioner, double steam towel, scalp massage, chair massage, neck shave</p>
+                                </div>
+                                <div>
+                                <h4>The GM</h4>
+                                <p>Standard haircut & shampoo</p>
+                                </div>
+                                <div>
+                                <h4>The Apprentice</h4>
+                                <p>Cut + shampoo, for kids 12 and under 
+                                    *Add a steam towel for $2 more</p>
+                                </div>
+                            </CardBody>
+                        </Card>
+                    </Collapse> */}
             </div>
         )
     }

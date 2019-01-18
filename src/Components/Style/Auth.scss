@@ -62,15 +62,16 @@
     max-height:0;
 }
 
+
 .auth-login {
     // border: black solid 1px;
     align-self: center;
 }
 button {
     color: white;
-    background-color: rgb(2, 83, 126);
+    background-color: black;
     margin: 5px;
-}:hover {
-//   background-color: white;
-  color: black;
+}button:hover {
+  background-color: rgb(2, 83, 126);
+  color: white;
 }
