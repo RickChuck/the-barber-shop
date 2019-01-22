@@ -70,12 +70,6 @@ app.post("/charge", async (req, res) => {
         res.status(500).end();
     }
   });
-const port = process.env.SERVER_PORT || port;
-app.listen(port, () => {
-    console.log(`I hear it on: ${port}`)
+app.listen(SERVER_PORT, () => {
+    console.log(`I hear it on: ${SERVER_PORT}`)
 })
-
-//This tells express to look for a build folder.
-app.get('*', (req, res)=>{
-    res.sendFile(path.join(__dirname, '../build/index.html'));
-});

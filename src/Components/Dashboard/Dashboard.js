@@ -51,9 +51,9 @@ class Dashboard extends Component {
                 </div>
                 <div className='body'>
                     <h1 className='dash-title'>Welcome</h1>
-                    <p>Let our team of expert stylists help you look you best!</p>
+                    <p>Let our team of expert stylists help you look your best!</p>
                     <div className='bookApp'>
-                        <Link to={'/booking'}><button>Book Now!</button></Link>
+                        <Link to={'/booking'}><button>Book Now</button></Link>
                     </div>
                     <div className='dash-app'>
                         {bookingsDisplay}
